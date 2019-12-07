@@ -176,3 +176,73 @@ int main()
     return 0;
 }
 */
+
+
+
+
+
+
+/*
+给你一个有效的 IPv4 地址 address，返回这个 IP 地址的无效化版本。
+所谓无效化 IP 地址，其实就是用 "[.]" 代替了每个 "."。
+
+示例 1：
+输入：address = "1.1.1.1"
+输出："1[.]1[.]1[.]1"
+
+示例 2：
+输入：address = "255.100.50.0"
+输出："255[.]100[.]50[.]0"
+*/
+
+
+/*
+//task 4
+#include <iostream>
+#include <string>
+using namespace std;
+class Solution {
+public:
+    string defangIPaddr(string address) {
+        for(int i = address.size(); i >=0 ; i--)
+        {
+            if(address[i] == '.')
+            {
+                address.replace(i, 1, "[.]");
+            }
+        }
+        return address;
+    }
+};
+int main()
+{
+    std::string address;
+    std::cin >> address;
+    Solution sl;
+    string addressResult = sl.defangIPaddr(address);
+    std::cout <<addressResult<<std::endl;
+    return 0;
+}
+*/
+
+
+
+
+
+/*
+请编写一个函数，使其可以删除某个链表中给定的（非末尾）节点，你将只被给定要求被删除的节点。
+现有一个链表 -- head = [4,5,1,9]，它可以表示为:
+
+示例 1:
+输入: head = [4,5,1,9], node = 5
+输出: [4,1,9]
+解释: 给定你链表中值为 5 的第二个节点，那么在调用了你的函数之后，该链表应变为 4 -> 1 -> 9.
+
+示例 2:
+输入: head = [4,5,1,9], node = 1
+输出: [4,5,9]
+解释: 给定你链表中值为 1 的第三个节点，那么在调用了你的函数之后，该链表应变为 4 -> 5 -> 9.
+
+*/
+
+
