@@ -245,4 +245,64 @@ int main()
 
 */
 
+/*
+//task5
+#include <iostream>
+struct ListNode
+{
+    int val;
+    ListNode *next;
+    ListNode(int x):val(x),next(NULL){}
+};
+
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        *node = *node->next;
+    }
+};
+
+int main()
+{
+    ListNode *head, *p;
+    int data;
+    head = new ListNode(0);
+    p = head;
+    std::cout <<"please input your data: ";
+    std::cin >>data;
+    while (std::cin)
+    {
+        ListNode *node;
+        node = new ListNode(data);
+        p->next = node;
+        p = node;
+        std::cout <<"please inpur your data(q to quit):";
+        std::cin >>data;
+    }
+    head = head->next;
+
+    std::cout <<"please input your delete data: ";
+    std::cin.clear();
+    std::cin.ignore();
+    int deleteData;
+    std::cin >> deleteData;
+    ListNode *q = head;
+    while (q != NULL)
+    {
+        if(q->val == deleteData)
+        {
+            Solution sl;
+            sl.deleteNode(q);
+        }
+        else
+        {
+            std::cout << q->val<<std::endl;
+            q = q->next;
+        }
+    }
+    return 0;
+}
+*/
+
+
 
