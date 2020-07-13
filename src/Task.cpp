@@ -500,3 +500,103 @@ int main()
     return 0;
 }
 */
+
+
+
+
+
+/*
+//Task 9
+实现一个算法，确定一个字符串 s 的所有字符是否全都不同。
+
+示例 1：
+输入: s = "leetcode"
+输出: false 
+
+示例 2：
+输入: s = "abc"
+输出: true
+限制：
+
+0 <= len(s) <= 100
+如果你不使用额外的数据结构，会很加分。
+*/
+
+
+/*
+#include <iostream>
+#include <string>
+using namespace std;
+class Solution {
+public:
+    bool isUnique(string astr) 
+    {
+        for(int i = 1; i < astr.size(); i++)
+        {
+            for(int j = 0; j < i; j++)
+            {
+                if(astr[i] == astr[j])
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+};
+
+int main()
+{
+    string test;
+    cout << "Please input your string:";
+    cin >> test;
+    
+    Solution sl;
+    bool flag = sl.isUnique(test);
+    if(flag)
+    {
+        cout << "true" <<endl;
+    }
+    else
+    {
+        cout << "false" <<endl;
+    }
+    
+    return 0;
+}
+*/
+
+
+
+/*
+//Task 10
+
+编写一个方法，找出两个数字a和b中最大的那一个。不得使用if-else或其他比较运算符。
+
+示例：
+
+输入： a = 1, b = 2
+输出： 2
+
+*/
+
+/*
+#include <iostream>
+class Solution {
+public:
+    int maximum(int a, int b) {
+        return(a > b ? a : b);
+    }
+};
+
+int main()
+{
+    int a,b, maxVal;
+    std::cout << "please input a value and b value:";
+    std::cin >> a >> b;
+    Solution sl;
+    maxVal = sl.maximum(a,b);
+    std::cout << "The more bigger is " << maxVal << std::endl;
+    return 0;
+}
+*/
