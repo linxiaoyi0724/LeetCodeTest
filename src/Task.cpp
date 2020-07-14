@@ -600,3 +600,126 @@ int main()
     return 0;
 }
 */
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+//Task 11
+编写一个函数，不用临时变量，直接交换numbers = [a, b]中a与b的值。
+
+示例：
+输入: numbers = [1,2]
+输出: [2,1]
+提示：
+
+numbers.length == 2
+
+*/
+
+/*
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> swapNumbers(vector<int>& numbers)
+    {
+        numbers[0] = numbers[0] - numbers[1];
+        numbers[1] = numbers[0] + numbers[1];
+        numbers[0] = numbers[1] - numbers[0];
+        return numbers;
+    }
+};
+
+int main()
+{
+    vector<int> num(2);
+    cout << "please input your number: ";
+    for(int i =0 ; i <2; i++)
+    {
+        cin >>num[i];
+    }
+
+    Solution sl;
+    num = sl.swapNumbers(num);
+    cout << "[" << num[0] << "," <<num[1] << "]";
+    return 0;
+
+}
+*/
+
+
+
+
+
+
+/*
+//Task 12
+给两个整数数组 A 和 B ，返回两个数组中公共的、长度最长的子数组的长度。
+
+示例：
+输入：
+A: [1,2,3,2,1]
+B: [3,2,1,4,7]
+输出：3
+解释：
+长度最长的公共子数组是 [3, 2, 1] 。
+*/
+
+#include <iostream>
+#include <vector>
+using namespace std;
+class Solution {
+public:
+    int findLength(vector<int>& A, vector<int>& B) {
+        vector<int> C;
+        int num = 0;
+        for(int i = 0; i < A.size(); i ++)
+        {
+            for(int j = i+1; j < A.size(); j++)
+            {
+                if(A[i] == A[j])
+                    break;
+                if(j == A.size()-1)
+                    C.push_back(A[i]);
+            }
+            if( i == A.size()-1)
+            {
+                C.push_back(A[i]);
+            }
+        }
+
+        for(int i = 0; i < C.size(); i++)
+        {
+            for(int j = 0; j < B.size(); j++)
+            {
+                if(C[i] == B[j])
+                {
+                    num++;
+                    break;
+                }
+            }
+        }
+        return num;
+    }
+};
+
+int main()
+{
+    vector<int> v1 = {1,2,3,2,1};
+    vector<int> v2 = {3,2,1,4,7};
+    Solution sl;
+    int num = sl.findLength(v1, v2);
+    cout << num <<endl;
+    return 0;
+}
