@@ -681,39 +681,31 @@ B: [3,2,1,4,7]
 using namespace std;
 class Solution {
 public:
-    int findLength(vector<int>& A, vector<int>& B) {
-        vector<int> C;
-        int num = 0;
-        for(int i = 0; i < A.size(); i ++)
-        {
-            for(int j = i+1; j < A.size(); j++)
-            {
-                if(A[i] == A[j])
-                    break;
-                if(j == A.size()-1)
-                    C.push_back(A[i]);
-            }
-            if( i == A.size()-1)
-            {
-                C.push_back(A[i]);
-            }
-        }
-
-        for(int i = 0; i < C.size(); i++)
+    int findLength(vector<int>& A, vector<int>& B) 
+    {
+        int ans = 0;
+        for(int i = 0; i < A.size(); i++)
         {
             for(int j = 0; j < B.size(); j++)
             {
-                if(C[i] == B[j])
+                int k =0;
+                bool flag = false;
+                while (i+k < A.size() && j+ k < B.size() &&A[i+k] == B[j+k])
                 {
-                    num++;
-                    break;
+                    k++;
+                    flag = true;
+                }
+                ans = ans >k?ans:k;
+                if(flag &&j+k == B.size()-1)
+                {
+                    return ans;
                 }
             }
+
         }
-        return num;
+        return ans;
     }
 };
-
 int main()
 {
     vector<int> v1 = {1,2,3,2,1};
