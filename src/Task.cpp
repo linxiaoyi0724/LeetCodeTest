@@ -663,6 +663,10 @@ int main()
 
 
 
+
+
+
+
 /*
 //Task 12
 给两个整数数组 A 和 B ，返回两个数组中公共的、长度最长的子数组的长度。
@@ -675,36 +679,77 @@ B: [3,2,1,4,7]
 解释：
 长度最长的公共子数组是 [3, 2, 1] 。
 */
-
+/*
 #include <iostream>
 #include <vector>
 using namespace std;
 class Solution {
 public:
-    int findLength(vector<int>& A, vector<int>& B) 
-    {
-        int ans = 0;
-        for(int i = 0; i < A.size(); i++)
-        {
-            for(int j = 0; j < B.size(); j++)
-            {
-                int k =0;
-                bool flag = false;
-                while (i+k < A.size() && j+ k < B.size() &&A[i+k] == B[j+k])
-                {
-                    k++;
-                    flag = true;
-                }
-                ans = ans >k?ans:k;
-                if(flag &&j+k == B.size()-1)
-                {
-                    return ans;
-                }
-            }
+	
+	//动态规划
+	//int findLength(vector<int>& A, vector<int>& B)
+	//{
+	//	int n = A.size();
+	//	int m = B.size();
+	//	vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
+	//	int ans = 0;
+	//	for (int i = n - 1; i >= 0; i--)
+	//	{
+	//		for (int j = m - 1; j >= 0; j--)
+	//		{
+	//			dp[i][j] = A[i] == B[j] ? dp[i + 1][j + 1] + 1 : 0;
+	//			ans = ans > dp[i][j] ? ans : dp[i][j];
+	//		}
+	//	}
+	//	return ans;
+	//}
+	
 
-        }
-        return ans;
-    }
+
+	int MaxNum(vector<int>& A, vector<int>& B, int aStart, int bStart, int len)
+	{
+		int ret = 0;
+		int k = 0;
+		for (int j = 0; j < len; j++)
+		{
+			if (A[aStart + j] == B[bStart + j])
+			{
+				k++;
+			}
+			else
+			{
+				k = 0;
+			}
+			ret = ret > k ? ret : k;
+		}
+		return ret;
+	}
+
+
+	int findLength(vector<int>& A, vector<int>& B)
+	{
+		int n = A.size();
+		int m = B.size();
+		int AAns = 0;
+		int BAns = 0;
+		int ans = 0;
+		for (int i = 0; i < n; i++)
+		{
+			int len = n - i < m ? n - i : m;
+			int kAns = MaxNum(A, B, i, 0, len);
+			AAns = AAns > kAns ? AAns : kAns;
+		}
+
+		for (int i = 0; i < m; i++)
+		{
+			int len = n < m - i ? n : m - i;
+			int KAns = MaxNum(A, B, 0, i, len);
+			BAns = BAns > KAns ? BAns : KAns;
+		}
+
+		ans = AAns > BAns ? AAns : BAns;
+		return ans;
+	}
 };
 int main()
 {
@@ -715,3 +760,6 @@ int main()
     cout << num <<endl;
     return 0;
 }
+*/
+
+
