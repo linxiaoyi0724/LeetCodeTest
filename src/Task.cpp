@@ -676,6 +676,8 @@ B: [3,2,1,4,7]
 长度最长的公共子数组是 [3, 2, 1] 。
 */
 
+
+/*
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -715,3 +717,86 @@ int main()
     cout << num <<endl;
     return 0;
 }
+*/
+
+
+
+/*
+//Task 13
+实现一种算法，删除单向链表中间的某个节点（即不是第一个或最后一个节点），假定你只能访问该节点。
+
+示例：
+
+输入：单向链表a->b->c->d->e->f中的节点c
+结果：不返回任何数据，但该链表变为a->b->d->e->f
+*/
+
+/*
+#include <string>
+#include <iostream>
+using namespace std;
+struct ListNode
+{
+    int val;
+    ListNode *next;
+    ListNode(int x):val(x),next(NULL){}
+};
+
+class Solution
+{
+public:
+    void deleteNode(ListNode* node)
+    {
+        node->val = node->next->val;
+        node->next = node->next->next;
+    }
+};
+
+int main()
+{
+    ListNode *head, *p;
+    head = new ListNode(0);
+    p = head;
+
+    int v;
+    while (cin>>v)
+    {
+        ListNode* n = new ListNode(v);
+        head->val = n->val;
+        p->next = n;
+        p = n;
+    }
+
+    head = head->next;
+    ListNode *m = head;
+    while (m !=NULL)
+    {
+        cout << m->val;
+        m = m->next;
+        if(m != NULL)
+        {
+            cout << "->";
+        }
+        
+    }
+    ListNode* d = head;
+    for(int i = 0 ;i < 3; i++)
+    {
+         d = d->next;
+    }
+    Solution sl;
+    sl.deleteNode(d);
+        while (head !=NULL)
+    {
+        cout << head->val;
+        head = head->next;
+        if(head != NULL)
+        {
+            cout << "->";
+        }
+        
+    }
+    return 0;
+}
+*/
+
