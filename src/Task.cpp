@@ -663,10 +663,6 @@ int main()
 
 
 
-
-
-
-
 /*
 //Task 12
 给两个整数数组 A 和 B ，返回两个数组中公共的、长度最长的子数组的长度。
@@ -679,82 +675,38 @@ B: [3,2,1,4,7]
 解释：
 长度最长的公共子数组是 [3, 2, 1] 。
 */
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 0add205d70c7340860063c359e87941656e23629
 /*
 #include <iostream>
 #include <vector>
 using namespace std;
 class Solution {
 public:
-	
-	//动态规划
-	//int findLength(vector<int>& A, vector<int>& B)
-	//{
-	//	int n = A.size();
-	//	int m = B.size();
-	//	vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
-	//	int ans = 0;
-	//	for (int i = n - 1; i >= 0; i--)
-	//	{
-	//		for (int j = m - 1; j >= 0; j--)
-	//		{
-	//			dp[i][j] = A[i] == B[j] ? dp[i + 1][j + 1] + 1 : 0;
-	//			ans = ans > dp[i][j] ? ans : dp[i][j];
-	//		}
-	//	}
-	//	return ans;
-	//}
-	
+    int findLength(vector<int>& A, vector<int>& B) 
+    {
+        int ans = 0;
+        for(int i = 0; i < A.size(); i++)
+        {
+            for(int j = 0; j < B.size(); j++)
+            {
+                int k =0;
+                bool flag = false;
+                while (i+k < A.size() && j+ k < B.size() &&A[i+k] == B[j+k])
+                {
+                    k++;
+                    flag = true;
+                }
+                ans = ans >k?ans:k;
+                if(flag &&j+k == B.size()-1)
+                {
+                    return ans;
+                }
+            }
 
-
-	int MaxNum(vector<int>& A, vector<int>& B, int aStart, int bStart, int len)
-	{
-		int ret = 0;
-		int k = 0;
-		for (int j = 0; j < len; j++)
-		{
-			if (A[aStart + j] == B[bStart + j])
-			{
-				k++;
-			}
-			else
-			{
-				k = 0;
-			}
-			ret = ret > k ? ret : k;
-		}
-		return ret;
-	}
-
-
-	int findLength(vector<int>& A, vector<int>& B)
-	{
-		int n = A.size();
-		int m = B.size();
-		int AAns = 0;
-		int BAns = 0;
-		int ans = 0;
-		for (int i = 0; i < n; i++)
-		{
-			int len = n - i < m ? n - i : m;
-			int kAns = MaxNum(A, B, i, 0, len);
-			AAns = AAns > kAns ? AAns : kAns;
-		}
-
-		for (int i = 0; i < m; i++)
-		{
-			int len = n < m - i ? n : m - i;
-			int KAns = MaxNum(A, B, 0, i, len);
-			BAns = BAns > KAns ? BAns : KAns;
-		}
-
-		ans = AAns > BAns ? AAns : BAns;
-		return ans;
-	}
+        }
+        return ans;
+    }
 };
 int main()
 {
@@ -768,7 +720,6 @@ int main()
 */
 
 
-<<<<<<< HEAD
 
 /*
 //Task 13
@@ -849,5 +800,151 @@ int main()
 }
 */
 
-=======
->>>>>>> 0add205d70c7340860063c359e87941656e23629
+
+
+
+
+
+
+//Task 14
+/*
+实现一种算法，找出单向链表中倒数第 k 个节点。返回该节点的值。
+
+注意：本题相对原题稍作改动
+
+示例：
+
+输入： 1->2->3->4->5 和 k = 2
+输出： 4
+*/
+
+
+/*
+#include <iostream>
+struct ListNode
+{
+    int val;
+    ListNode *next;
+    ListNode(int x ):val(x),next(NULL){}
+};
+
+
+class Solution
+{
+public:
+    int kthToLast(ListNode* head,int k)
+    {
+        ListNode *pCount = head;
+        ListNode *pIter = head;
+        int i  =0;
+        while (pCount != NULL)
+        {
+            i++;
+            pCount = pCount->next;
+        }
+        for(int j =0; j < i-k;j++)
+        {
+            pIter = pIter->next;
+        }
+        return pIter->val;
+    }
+};
+
+int main()
+{
+    ListNode *head, *p, *pDisplay;
+    head = new ListNode(0);
+    p = head;
+    int value, k;
+    std::cout << "input list value:";
+    while (std::cin>>value)
+    {
+        ListNode *temp = new ListNode(value);
+        p->next = temp;
+        p = temp;
+        std::cout << "input list value:";
+    }
+    head = head->next;
+
+    std::cin.clear();
+    std::cin.ignore();
+    std::cout << "input k:";
+    std::cin >>k;
+    pDisplay = head;
+
+    while (pDisplay!=NULL)
+    {
+        std::cout << pDisplay->val;
+        
+        if(pDisplay->next != NULL)
+        {
+            std::cout << "->";
+        }
+        pDisplay = pDisplay->next;
+    }
+
+    std::cout << std::endl;
+    Solution sl;
+    int kVal = sl.kthToLast(head,k);
+    std::cout << kVal <<std::endl;
+    return 0;
+    
+}
+*/
+
+
+
+
+
+
+//Task 15
+/*
+实现一个MyQueue类，该类用两个栈来实现一个队列。
+
+
+示例：
+
+MyQueue queue = new MyQueue();
+
+queue.push(1);
+queue.push(2);
+queue.peek();  // 返回 1
+queue.pop();   // 返回 1
+queue.empty(); // 返回 false
+
+说明：
+
+你只能使用标准的栈操作 -- 也就是只有 push to top, peek/pop from top, size 和 is empty 操作是合法的。
+你所使用的语言也许不支持栈。你可以使用 list 或者 deque（双端队列）来模拟一个栈，只要是标准的栈操作即可。
+假设所有操作都是有效的 （例如，一个空的队列不会调用 pop 或者 peek 操作）。
+*/
+
+
+#include <iostream>
+#include <stack>
+using namespace std;
+class MyQueue
+{
+public:
+    MyQueue(){}
+
+    void Push(int x)
+    {
+
+    }
+
+    int Pop()
+    {
+
+    }
+
+    int Peek()
+    {
+
+    }
+
+    bool Empty()
+    {
+
+    }
+};
