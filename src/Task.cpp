@@ -919,32 +919,167 @@ queue.empty(); // 返回 false
 假设所有操作都是有效的 （例如，一个空的队列不会调用 pop 或者 peek 操作）。
 */
 
-
+/*
 #include <iostream>
 #include <stack>
 using namespace std;
 class MyQueue
 {
 public:
-    MyQueue(){}
+	stack<int> st1, st2;
+	MyQueue() {}
 
-    void Push(int x)
-    {
+	void Push(int x)
+	{
+		st1.push(x);
+	}
 
-    }
+	int Pop()
+	{
+		if (st2.empty())
+		{
+			while (!st1.empty())
+			{
+				st2.push(st1.top());
+				st1.pop();
+			}
+		}
 
-    int Pop()
-    {
+		int ret = st2.top();
+		st2.pop();
+		return ret;
+	}
 
-    }
+	int Peek()
+	{
+		if (st2.empty())
+		{
+			while (!st1.empty())
+			{
+				st2.push(st1.top());
+				st1.pop();
+			}
+		}
 
-    int Peek()
-    {
+		return st2.top();
+	}
 
-    }
+	bool Empty()
+	{
+		if (st2.empty())
+		{
+			while (!st1.empty())
+			{
+				st2.push(st1.top());
+				st1.pop();
+			}
+		}
 
-    bool Empty()
-    {
-
-    }
+		return st2.empty();
+	}
 };
+
+int main()
+{
+	MyQueue *obj = new MyQueue();
+	obj->Push(1);
+	obj->Push(2);
+	obj->Push(3);
+
+	int param_2 = obj->Pop();
+	int param_3 = obj->Peek();
+	bool param_4 = obj->Empty();
+
+	cout << param_2 << endl;
+	cout << param_3 << endl;
+	cout << param_4 << endl;
+
+	return 0;
+}
+*/
+
+
+
+
+/*
+编写代码，移除未排序链表中的重复节点。保留最开始出现的节点。
+
+示例1 :
+
+输入：[1, 2, 3, 3, 2, 1]
+输出：[1, 2, 3]
+示例2 :
+
+	输入：[1, 1, 1, 1, 2]
+	输出：[1, 2]
+	提示：
+
+	链表长度在[0, 20000]范围内。
+	链表元素在[0, 20000]范围内。
+	进阶：
+
+	如果不得使用临时缓冲区，该怎么解决？
+*/
+
+#include <string>
+#include <iostream>
+using namespace std;
+struct ListNode {
+      int val;
+      ListNode *next;
+      ListNode(int x) : val(x), next(NULL) {}
+};
+
+class Solution {
+public:
+	ListNode* removeDuplicateNodes(ListNode* head) {
+
+	}
+};
+
+int main()
+{
+	ListNode *head, *p, *display, *pl, *pr;
+	head = new ListNode(0);
+	p = head;
+	int v;
+	while (cin >> v)
+	{
+		ListNode *temp = new ListNode(v);
+		p->next = temp;
+		p = temp;
+	}
+	head = head->next;
+
+	pl = head;
+	while (pl != NULL)
+	{
+		pr = pl;
+		while (pr != NULL)
+		{
+			if (pr->next->val == pl->val)
+			{
+				pr->next = p->next->next;
+			}
+			else
+			{
+				pr = pr->next;
+			}
+		}
+		pl = pl->next;
+	}
+
+
+
+	display = head;
+	cout << "[";
+	while (display!= NULL)
+	{
+		cout << display->val ;
+		display = display->next;
+		if (display)
+			cout << ",";
+	}
+	cout << "]";
+	return 0;
+}
