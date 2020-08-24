@@ -1002,6 +1002,7 @@ int main()
 
 
 /*
+//Task 16
 编写代码，移除未排序链表中的重复节点。保留最开始出现的节点。
 
 示例1 :
@@ -1021,6 +1022,7 @@ int main()
 	如果不得使用临时缓冲区，该怎么解决？
 */
 
+/*
 #include <string>
 #include <iostream>
 using namespace std;
@@ -1033,43 +1035,43 @@ struct ListNode {
 class Solution {
 public:
 	ListNode* removeDuplicateNodes(ListNode* head) {
-
+        ListNode *pl = head;
+        while (pl != NULL)
+        {
+            ListNode *pr = pl;
+            while (pr->next != NULL)
+            {
+                if(pr->next->val == pl->val)
+                {
+                    pr->next = pr->next->next;
+                }
+                else
+                {
+                    pr = pr->next;
+                }
+            }
+            pl = pl->next;
+        }
 	}
 };
 
 int main()
 {
-	ListNode *head, *p, *display, *pl, *pr;
+	ListNode *head, *p, *display;
 	head = new ListNode(0);
 	p = head;
 	int v;
 	while (cin >> v)
 	{
-		ListNode *temp = new ListNode(v);
+		ListNode *temp = new ListNode(v); 
 		p->next = temp;
 		p = temp;
 	}
 	head = head->next;
 
-	pl = head;
-	while (pl != NULL)
-	{
-		pr = pl;
-		while (pr != NULL)
-		{
-			if (pr->next->val == pl->val)
-			{
-				pr->next = p->next->next;
-			}
-			else
-			{
-				pr = pr->next;
-			}
-		}
-		pl = pl->next;
-	}
-
-
+    ListNode* rn = head;
+    Solution sq;
+    sq.removeDuplicateNodes(rn);
 
 	display = head;
 	cout << "[";
@@ -1083,3 +1085,7 @@ int main()
 	cout << "]";
 	return 0;
 }
+*/
+
+
+
